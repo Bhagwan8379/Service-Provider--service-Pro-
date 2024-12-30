@@ -62,7 +62,7 @@ exports.getProfessional = async (req, res) => {
     try {
         const result = await Auth.findOne({ _id: req.user })
         if (result.isActive === false) {
-            return res.status(400).json({ message: "Cannpot Access Profile,Your Account Blocked By Admin " })
+            return res.status(400).json({ message: "Cannot Access Profile,Your Account Blocked By Admin " })
         }
         res.json({ message: "Professionals Fetch Success", result })
 
