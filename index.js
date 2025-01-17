@@ -9,9 +9,12 @@ const { app, httpServer } = require("./socket/socket")
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.NODE_ENV === 'development'
+        ? process.env.LOCAL_URL
+        : process.env.LIVE_URL,
     credentials: true
 }))
+
 app.use("/api/auth", require("./routes/auth.routes"))
 app.use("/api/admin", require("./routes/admin.routes"))
 app.use("/api/agency", require("./routes/agency.routes"))
