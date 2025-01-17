@@ -45,13 +45,13 @@ exports.loginAdmin = async (req, res) => {
         if (!isFound) {
             return res.status(401).json({ message: "Email Not Found 👎" })
         }
+        if (!isFound.isActive) {
+            return res.status(400).json({ message: "Cannot Login, Your Account Blockd By Admin" })
+        }
+
         const isVerify = await bcrypt.compare(password, isFound.password)
         if (!isVerify) {
             return res.status(401).json({ message: "Password Not Match 👎" })
-        }
-
-        if (!isFound.isActive) {
-            return res.status(400).json({ message: "Cannot Login, Your Account Blockd By Admin" })
         }
 
         const token = jwt.sign({ userId: isFound._id, name: isFound.name }, process.env.JWT_KEY, { expiresIn: "15d" })
