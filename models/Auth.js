@@ -19,7 +19,7 @@ const authSchema = new mongoose.Schema({
     available: { type: String },
     hero: { type: String },
     skills: { type: [String] },
-    isActive: { type: Boolean, default: false },
+    isActive: { type: Boolean, default: true },
     isBooked: { type: Boolean, default: false },
 
     services: { type: [String] },
