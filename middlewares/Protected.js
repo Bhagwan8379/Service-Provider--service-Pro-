@@ -65,6 +65,7 @@ exports.customerProtected = async (req, res, next) => {
     }
     jwt.verify(customer, process.env.JWT_KEY, (error, decode) => {
         if (error) {
+            ``
             console.log(error);
             return res.status(401).json({ message: "Invalid Token" })
         }
@@ -73,3 +74,4 @@ exports.customerProtected = async (req, res, next) => {
     })
     next()
 }
+
