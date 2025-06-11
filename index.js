@@ -29,6 +29,7 @@ app.use("*", (req, res) => {
     res.sendFile(path.join(__dirname, "dist", "index.html"))
     // res.status(404).json({ message: "Route Not FOund" })
 })
+
 app.use((err, req, res, next) => {
     console.log(err)
     res.status(500).json({ message: `SERVER ERROR ${err.message}` })
